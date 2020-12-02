@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -66,10 +69,19 @@ public class FileUtility {
 		}
 	}
 
+	public static List<String> readFileToStringArray(File f) {
+		try {
+			return Files.readAllLines(Paths.get(f.getAbsolutePath()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public static void wipeFile(File f) {
 		try {
 			PrintStream p = new PrintStream(f);
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
